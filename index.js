@@ -6,10 +6,24 @@ let characters = ["A","B","C","D","E","F","G",
      "2", "3", "4", "5", "6", "7", "8", "9","~","`","!",
      "@","#","$","%","^","&","*","(",")","_","-","+","=",
      "{","[","}","]",",","|",":",";","<",">",".","?","/"];
-     let passEl=document.getElementById("gen1-el")
-     let genEl=document.getElementById("gen2-el")
-     let paraEl=document.getElementById("para-el")
-
-     function paraEl(){
-        paraEl.textContent="Ganesh"
-     }
+   let passEl=document.getElementById("gen2-el")
+function pass1(){
+    passEl.textContent=""
+    for(let i=0;i<12;i++){
+        let randomPass=characters[Math.floor(Math.random()* characters.length)]
+        passEl.textContent+=randomPass
+    }
+}
+document.getElementById("copy-btn").addEventListener("click", function() {
+    if (passEl.textContent) { // Ensure there's a password to copy
+        navigator.clipboard.writeText(passEl.textContent)
+            .then(function() {
+                alert("Password copied to clipboard!");
+            })
+            .catch(function(err) {
+                alert("Failed to copy: " + err);
+            });
+    } else {
+        alert("Generate a password first!");
+    }
+});
